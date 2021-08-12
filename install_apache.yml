@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install apache package and git on Linux
+    package:
+      name:
+       - " {{ apache_package }} "
+       - " {{ git_package }} "
+      state: present
+      update_cache: yes
+ 
+
+ 

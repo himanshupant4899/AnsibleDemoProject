@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: uninstall apache package
+    yum:
+      name: httpd
+      state: absent
+
+  - name: update repository index
+    yum:
+      update_cache: yes
+       
+  - name: remove git support
+    yum:  
+      name: git
+      state: absent
