@@ -1,0 +1,56 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+  
+  - name: install updates (Amazon linux)
+    tags: always
+    yum:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "Amazon Linux"
+
+  - name: install updates (Ubuntu)
+    tags: always
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+
+- hosts: web-servers-linux
+  become: true
+  tasks:
+
+  - name: install apache package and php on Linux
+    tags: apache,httpd,amazon 
+    yum:
+      name:
+       - httpd
+       - php
+      state: present
+      update_cache: yes
+    when: ansible_distribution == "Amazon Linux"
+
+  - name: install apache and php on Ubuntu
+    tags: apache,apache2,ubuntu
+    apt:
+      name:
+        - apache2
+        - libapache2-mod-php
+      state: latest
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+ 
+- hosts: web-servers-Ubuntu
+  become: true
+  tasks:
+  
+  - name: install Mariadb package
+    tags: ubuntu,mariadb
+    apt:
+      name: mariadb-server
+      state: latest
+    when: ansible_distribution == "Ubuntu"

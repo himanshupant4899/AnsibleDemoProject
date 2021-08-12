@@ -1,4 +1,11 @@
-sysadmin@13.127.56.159 apache_package=httpd git_package=git
-sysadmin@65.0.87.104 apache_package=httpd git_package=git
+[web-servers-linux]
+sysadmin@IP1
+sysadmin@IP2
+
+[web-servers-Ubuntu]
+sysadmin@IP3
+
+#sysadmin@13.127.56.159 apache_package=httpd git_package=git
+#sysadmin@65.0.87.104 apache_package=httpd git_package=git
 #sysadmin@IP apache_package=apache2 git_package=git
 
